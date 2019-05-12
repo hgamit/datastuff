@@ -1,0 +1,3 @@
+[submodule "class/kickstarter/reveal.js"]
+	path = class/kickstarter/reveal.js
+	url = https://github.com/hakimel/reveal.js.git
