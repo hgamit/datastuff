@@ -1,0 +1,1424 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{NavalMinerModel}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Naval Mine AI Program: Roack or Mine
+Identifier}\label{naval-mine-ai-program-roack-or-mine-identifier}
+
+Tensor flow - General Model creation steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Read dataset and create appropriate variables(X, y, W, b)
+\item
+  Model to predict
+\item
+  Loss function - how far predicted output is from desired output.
+\item
+  Minimize the loss function - Optimizer (user argument learning rate) -
+  Gives New W and b
+\item
+  Evaluate accuracy
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{}Load Pre\PYZhy{}requisite libraries}
+        
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{LabelEncoder}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{utils} \PY{k}{import} \PY{n}{shuffle}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+        
+        
+        \PY{c+c1}{\PYZsh{} One hot encode output variable to separate classification variables}
+        \PY{k}{def} \PY{n+nf}{one\PYZus{}hot\PYZus{}encode}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{:}
+            \PY{n}{n\PYZus{}labels} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+            \PY{n}{n\PYZus{}unique\PYZus{}labels} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)}
+            \PY{n}{one\PYZus{}hot\PYZus{}encode} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n\PYZus{}labels}\PY{p}{,} \PY{n}{n\PYZus{}unique\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+            \PY{n}{one\PYZus{}hot\PYZus{}encode}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{n\PYZus{}labels}\PY{p}{)}\PY{p}{,} \PY{n}{labels}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            \PY{k}{return} \PY{n}{one\PYZus{}hot\PYZus{}encode}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}ProgramData\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}h5py\textbackslash{}\_\_init\_\_.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from .\_conv import register\_converters as \_register\_converters
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}Read data to pandas data frame and set index and column names}
+        
+        \PY{n}{columns} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{61}\PY{p}{)}\PY{p}{)}
+        \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hmnsh}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{repos}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{edureka}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{sonar}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{sonar.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{n}{columns}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} (208, 61)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}Separate input and output variables}
+        \PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+        \PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{y1} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}perform label and ohe hot encoding to avoid ordering issue}
+        
+        \PY{n}{encoder} \PY{o}{=} \PY{n}{LabelEncoder}\PY{p}{(}\PY{p}{)}
+        \PY{n}{encoder}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{n}{encoder}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \PY{n}{Y} \PY{o}{=} \PY{n}{one\PYZus{}hot\PYZus{}encode}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \PY{n}{Y}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} (208, 2)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} shuffle rows \PYZhy{} mixing up }
+        
+        \PY{n}{X}\PY{p}{,} \PY{n}{Y} \PY{o}{=} \PY{n}{shuffle}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} train and test split}
+        
+        \PY{n}{train\PYZus{}x}\PY{p}{,} \PY{n}{test\PYZus{}x}\PY{p}{,} \PY{n}{train\PYZus{}y}\PY{p}{,} \PY{n}{test\PYZus{}y} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.20}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{415}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} print shapes of data splits}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{train\PYZus{}x}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{train\PYZus{}y}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}x}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{test\PYZus{}y}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(166, 60)
+(166, 2)
+(42, 60)
+(42, 2)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} params and tensor varibles}
+        
+        \PY{n}{learning\PYZus{}rate} \PY{o}{=} \PY{l+m+mf}{0.3} \PY{c+c1}{\PYZsh{} loss minimizing steps}
+        \PY{n}{training\PYZus{}epochs} \PY{o}{=} \PY{l+m+mi}{800} \PY{c+c1}{\PYZsh{} number of iterations to minimize W and b}
+        \PY{n}{cost\PYZus{}history} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{n}{shape}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}  \PY{c+c1}{\PYZsh{} mse values}
+        \PY{n}{n\PYZus{}dim} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{c+c1}{\PYZsh{} Number of columns}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ndim:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{n\PYZus{}dim}\PY{p}{)} \PY{c+c1}{\PYZsh{} total columns for later use in model and parameters creation}
+        
+        \PY{n}{n\PYZus{}class} \PY{o}{=} \PY{l+m+mi}{2} 
+        \PY{n}{model\PYZus{}path} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hmnsh}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{repos}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{edureka}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{sonar}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ndim: 60
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Hidden layer details and neurons for each layer}
+        
+        \PY{n}{n\PYZus{}hidden\PYZus{}1} \PY{o}{=} \PY{l+m+mi}{60}
+        \PY{n}{n\PYZus{}hidden\PYZus{}2} \PY{o}{=} \PY{l+m+mi}{60}
+        \PY{n}{n\PYZus{}hidden\PYZus{}3} \PY{o}{=} \PY{l+m+mi}{60}
+        \PY{n}{n\PYZus{}hidden\PYZus{}4} \PY{o}{=} \PY{l+m+mi}{60}
+        
+        \PY{n}{x} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{p}{[}\PY{k+kc}{None}\PY{p}{,} \PY{n}{n\PYZus{}dim}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} for each row input}
+        \PY{n}{y\PYZus{}} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{p}{[}\PY{k+kc}{None}\PY{p}{,} \PY{n}{n\PYZus{}class}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} for each row output}
+        \PY{n}{W} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}dim}\PY{p}{,} \PY{n}{n\PYZus{}class}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{}intialized weights to zeros}
+        \PY{n}{b} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}class}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{}intialized biases to zeros}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} weights and biases for each layer}
+         
+         \PY{n}{weights} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}dim}\PY{p}{,} \PY{n}{n\PYZus{}hidden\PYZus{}1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}1}\PY{p}{,} \PY{n}{n\PYZus{}hidden\PYZus{}2}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}2}\PY{p}{,} \PY{n}{n\PYZus{}hidden\PYZus{}3}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}3}\PY{p}{,} \PY{n}{n\PYZus{}hidden\PYZus{}4}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{out}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}4}\PY{p}{,} \PY{n}{n\PYZus{}class}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{n}{biases} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}2}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}3}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}hidden\PYZus{}4}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{out}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{truncated\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}class}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+c1}{\PYZsh{} Initialize all variables}
+         
+         \PY{n}{init} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{global\PYZus{}variables\PYZus{}initializer}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{saver} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{Saver}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Define the model}
+         
+         \PY{k}{def} \PY{n+nf}{multilayer\PYZus{}perc}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{weights}\PY{p}{,} \PY{n}{biases}\PY{p}{)}\PY{p}{:}
+             \PY{n}{layer\PYZus{}1} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{weights}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{biases}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n}{layer\PYZus{}1} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{sigmoid}\PY{p}{(}\PY{n}{layer\PYZus{}1}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} hidden layer 1 with sigmoid activation}
+         
+             \PY{n}{layer\PYZus{}2} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{layer\PYZus{}1}\PY{p}{,} \PY{n}{weights}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{biases}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n}{layer\PYZus{}2} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{sigmoid}\PY{p}{(}\PY{n}{layer\PYZus{}2}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} hidden layer 2 with sigmoid activation}
+         
+             \PY{n}{layer\PYZus{}3} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{layer\PYZus{}2}\PY{p}{,} \PY{n}{weights}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{biases}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n}{layer\PYZus{}3} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{sigmoid}\PY{p}{(}\PY{n}{layer\PYZus{}3}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} hidden layer 3 with sigmoid activation}
+         
+             \PY{n}{layer\PYZus{}4} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{layer\PYZus{}3}\PY{p}{,} \PY{n}{weights}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{biases}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n}{layer\PYZus{}4} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{layer\PYZus{}4}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} hidden layer 4 with relu activation}
+         
+             \PY{n}{out\PYZus{}layer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{layer\PYZus{}4}\PY{p}{,} \PY{n}{weights}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{out}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{biases}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{out}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{out\PYZus{}layer}
+         
+         \PY{c+c1}{\PYZsh{} call model}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{multilayer\PYZus{}perc}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{weights}\PY{p}{,} \PY{n}{biases}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} define cost function and optimizer}
+         
+         \PY{n}{cost\PYZus{}function} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{nn}\PY{o}{.}\PY{n}{softmax\PYZus{}cross\PYZus{}entropy\PYZus{}with\PYZus{}logits}\PY{p}{(}\PY{n}{logits}\PY{o}{=}\PY{n}{y}\PY{p}{,} \PY{n}{labels}\PY{o}{=}\PY{n}{y\PYZus{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{training\PYZus{}step} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{GradientDescentOptimizer}\PY{p}{(}\PY{n}{learning\PYZus{}rate}\PY{p}{)}\PY{o}{.}\PY{n}{minimize}\PY{p}{(}\PY{n}{cost\PYZus{}function}\PY{p}{)}
+         
+         \PY{n}{sess} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{p}{)}
+         \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{init}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING:tensorflow:From <ipython-input-11-7b945f99e403>:29: softmax\_cross\_entropy\_with\_logits (from tensorflow.python.ops.nn\_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See @\{tf.nn.softmax\_cross\_entropy\_with\_logits\_v2\}.
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} cost and accuracy \PYZhy{} running multilayer\PYZus{}perceptron \PYZhy{} training and accuracy}
+         
+         \PY{n}{mse\PYZus{}history} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{accuracy\PYZus{}history} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{training\PYZus{}epochs}\PY{p}{)}\PY{p}{:}
+             \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{training\PYZus{}step}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{train\PYZus{}x}\PY{p}{,} \PY{n}{y\PYZus{}}\PY{p}{:} \PY{n}{train\PYZus{}y}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{cost} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{cost\PYZus{}function}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{train\PYZus{}x}\PY{p}{,} \PY{n}{y\PYZus{}}\PY{p}{:} \PY{n}{train\PYZus{}y}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{cost\PYZus{}history} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cost\PYZus{}history}\PY{p}{,} \PY{n}{cost}\PY{p}{)}
+             \PY{n}{correct\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{equal}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y\PYZus{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+             \PY{n}{accuracy} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{cast}\PY{p}{(}\PY{n}{correct\PYZus{}prediction}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} print( \PYZdq{}Accuracy: \PYZdq{}, (sess.run(accuracy, feed\PYZus{}dict=\PYZob{}x: test\PYZus{}x, y: test\PYZus{}y\PYZcb{} )))}
+             \PY{n}{pred\PYZus{}y} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}x}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{mse} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{pred\PYZus{}y} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}y}\PY{p}{)}\PY{p}{)}
+             \PY{n}{mse\PYZus{}} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{mse}\PY{p}{)}
+             \PY{n}{mse\PYZus{}history}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mse\PYZus{}}\PY{p}{)}
+             \PY{n}{accuracy} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{accuracy}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{train\PYZus{}x}\PY{p}{,} \PY{n}{y\PYZus{}}\PY{p}{:} \PY{n}{train\PYZus{}y}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{accuracy\PYZus{}history}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{accuracy}\PY{p}{)}
+         
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{epoch }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{epoch}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}cost }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cost}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}mse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mse}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}Train Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{accuracy}\PY{p}{)}
+         
+         \PY{n}{save\PYZus{}path} \PY{o}{=} \PY{n}{saver}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{n}{sess}\PY{p}{,} \PY{n}{model\PYZus{}path}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Model Saved in file: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{save\PYZus{}path}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+epoch  0 -cost  40.118187 -mse Tensor("Mean\_2:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  1 -cost  42.887985 -mse Tensor("Mean\_4:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  2 -cost  3.4357057 -mse Tensor("Mean\_6:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  3 -cost  10.765909 -mse Tensor("Mean\_8:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  4 -cost  1.2333616 -mse Tensor("Mean\_10:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  5 -cost  0.7671475 -mse Tensor("Mean\_12:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  6 -cost  0.83952534 -mse Tensor("Mean\_14:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  7 -cost  1.0207981 -mse Tensor("Mean\_16:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  8 -cost  0.7102595 -mse Tensor("Mean\_18:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  9 -cost  0.71835506 -mse Tensor("Mean\_20:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  10 -cost  0.75376564 -mse Tensor("Mean\_22:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  11 -cost  0.73120457 -mse Tensor("Mean\_24:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  12 -cost  0.7842662 -mse Tensor("Mean\_26:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  13 -cost  0.71749747 -mse Tensor("Mean\_28:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  14 -cost  0.75398076 -mse Tensor("Mean\_30:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  15 -cost  0.71647096 -mse Tensor("Mean\_32:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  16 -cost  0.75071216 -mse Tensor("Mean\_34:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  17 -cost  0.7105264 -mse Tensor("Mean\_36:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  18 -cost  0.7399342 -mse Tensor("Mean\_38:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  19 -cost  0.70689017 -mse Tensor("Mean\_40:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  20 -cost  0.7331338 -mse Tensor("Mean\_42:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  21 -cost  0.7023902 -mse Tensor("Mean\_44:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  22 -cost  0.7257557 -mse Tensor("Mean\_46:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  23 -cost  0.69798094 -mse Tensor("Mean\_48:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  24 -cost  0.71988493 -mse Tensor("Mean\_50:0", shape=(), dtype=float64) -Train Accuracy 0.45783132
+epoch  25 -cost  0.697446 -mse Tensor("Mean\_52:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  26 -cost  0.7166629 -mse Tensor("Mean\_54:0", shape=(), dtype=float64) -Train Accuracy 0.45783132
+epoch  27 -cost  0.6901134 -mse Tensor("Mean\_56:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  28 -cost  0.70545584 -mse Tensor("Mean\_58:0", shape=(), dtype=float64) -Train Accuracy 0.43975905
+epoch  29 -cost  0.6865614 -mse Tensor("Mean\_60:0", shape=(), dtype=float64) -Train Accuracy 0.57228917
+epoch  30 -cost  0.70072526 -mse Tensor("Mean\_62:0", shape=(), dtype=float64) -Train Accuracy 0.43975905
+epoch  31 -cost  0.68359786 -mse Tensor("Mean\_64:0", shape=(), dtype=float64) -Train Accuracy 0.57228917
+epoch  32 -cost  0.69975865 -mse Tensor("Mean\_66:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  33 -cost  0.68638366 -mse Tensor("Mean\_68:0", shape=(), dtype=float64) -Train Accuracy 0.56626505
+epoch  34 -cost  0.6996068 -mse Tensor("Mean\_70:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  35 -cost  0.6779569 -mse Tensor("Mean\_72:0", shape=(), dtype=float64) -Train Accuracy 0.57831323
+epoch  36 -cost  0.68879676 -mse Tensor("Mean\_74:0", shape=(), dtype=float64) -Train Accuracy 0.48795182
+epoch  37 -cost  0.675048 -mse Tensor("Mean\_76:0", shape=(), dtype=float64) -Train Accuracy 0.58433735
+epoch  38 -cost  0.6870661 -mse Tensor("Mean\_78:0", shape=(), dtype=float64) -Train Accuracy 0.4939759
+epoch  39 -cost  0.6758773 -mse Tensor("Mean\_80:0", shape=(), dtype=float64) -Train Accuracy 0.57831323
+epoch  40 -cost  0.68665916 -mse Tensor("Mean\_82:0", shape=(), dtype=float64) -Train Accuracy 0.4939759
+epoch  41 -cost  0.67123425 -mse Tensor("Mean\_84:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  42 -cost  0.68166554 -mse Tensor("Mean\_86:0", shape=(), dtype=float64) -Train Accuracy 0.5180723
+epoch  43 -cost  0.6697978 -mse Tensor("Mean\_88:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  44 -cost  0.6808953 -mse Tensor("Mean\_90:0", shape=(), dtype=float64) -Train Accuracy 0.5180723
+epoch  45 -cost  0.6692245 -mse Tensor("Mean\_92:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  46 -cost  0.680415 -mse Tensor("Mean\_94:0", shape=(), dtype=float64) -Train Accuracy 0.5180723
+epoch  47 -cost  0.6670417 -mse Tensor("Mean\_96:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  48 -cost  0.67938983 -mse Tensor("Mean\_98:0", shape=(), dtype=float64) -Train Accuracy 0.53614455
+epoch  49 -cost  0.66713405 -mse Tensor("Mean\_100:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  50 -cost  0.68002033 -mse Tensor("Mean\_102:0", shape=(), dtype=float64) -Train Accuracy 0.52409637
+epoch  51 -cost  0.66545796 -mse Tensor("Mean\_104:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  52 -cost  0.6792915 -mse Tensor("Mean\_106:0", shape=(), dtype=float64) -Train Accuracy 0.52409637
+epoch  53 -cost  0.6644769 -mse Tensor("Mean\_108:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  54 -cost  0.67841953 -mse Tensor("Mean\_110:0", shape=(), dtype=float64) -Train Accuracy 0.52409637
+epoch  55 -cost  0.6625986 -mse Tensor("Mean\_112:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  56 -cost  0.67745155 -mse Tensor("Mean\_114:0", shape=(), dtype=float64) -Train Accuracy 0.5421687
+epoch  57 -cost  0.6632244 -mse Tensor("Mean\_116:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  58 -cost  0.6766736 -mse Tensor("Mean\_118:0", shape=(), dtype=float64) -Train Accuracy 0.5421687
+epoch  59 -cost  0.66033536 -mse Tensor("Mean\_120:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  60 -cost  0.6747905 -mse Tensor("Mean\_122:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  61 -cost  0.65908056 -mse Tensor("Mean\_124:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  62 -cost  0.6746361 -mse Tensor("Mean\_126:0", shape=(), dtype=float64) -Train Accuracy 0.56626505
+epoch  63 -cost  0.6603345 -mse Tensor("Mean\_128:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  64 -cost  0.6753222 -mse Tensor("Mean\_130:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  65 -cost  0.65777767 -mse Tensor("Mean\_132:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  66 -cost  0.67187387 -mse Tensor("Mean\_134:0", shape=(), dtype=float64) -Train Accuracy 0.58433735
+epoch  67 -cost  0.6548963 -mse Tensor("Mean\_136:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  68 -cost  0.6682477 -mse Tensor("Mean\_138:0", shape=(), dtype=float64) -Train Accuracy 0.58433735
+epoch  69 -cost  0.65290385 -mse Tensor("Mean\_140:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  70 -cost  0.66578496 -mse Tensor("Mean\_142:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  71 -cost  0.6513207 -mse Tensor("Mean\_144:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  72 -cost  0.6648971 -mse Tensor("Mean\_146:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  73 -cost  0.65021354 -mse Tensor("Mean\_148:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  74 -cost  0.6639597 -mse Tensor("Mean\_150:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  75 -cost  0.64909154 -mse Tensor("Mean\_152:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  76 -cost  0.6634163 -mse Tensor("Mean\_154:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  77 -cost  0.64883274 -mse Tensor("Mean\_156:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  78 -cost  0.66368985 -mse Tensor("Mean\_158:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  79 -cost  0.64680034 -mse Tensor("Mean\_160:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  80 -cost  0.6606856 -mse Tensor("Mean\_162:0", shape=(), dtype=float64) -Train Accuracy 0.6084337
+epoch  81 -cost  0.6402727 -mse Tensor("Mean\_164:0", shape=(), dtype=float64) -Train Accuracy 0.6084337
+epoch  82 -cost  0.65306044 -mse Tensor("Mean\_166:0", shape=(), dtype=float64) -Train Accuracy 0.6325301
+epoch  83 -cost  0.63864565 -mse Tensor("Mean\_168:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  84 -cost  0.65504855 -mse Tensor("Mean\_170:0", shape=(), dtype=float64) -Train Accuracy 0.6325301
+epoch  85 -cost  0.6422274 -mse Tensor("Mean\_172:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  86 -cost  0.65783805 -mse Tensor("Mean\_174:0", shape=(), dtype=float64) -Train Accuracy 0.61445785
+epoch  87 -cost  0.6309748 -mse Tensor("Mean\_176:0", shape=(), dtype=float64) -Train Accuracy 0.6084337
+epoch  88 -cost  0.644479 -mse Tensor("Mean\_178:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  89 -cost  0.6267228 -mse Tensor("Mean\_180:0", shape=(), dtype=float64) -Train Accuracy 0.6204819
+epoch  90 -cost  0.64259344 -mse Tensor("Mean\_182:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  91 -cost  0.63069844 -mse Tensor("Mean\_184:0", shape=(), dtype=float64) -Train Accuracy 0.62650603
+epoch  92 -cost  0.65426797 -mse Tensor("Mean\_186:0", shape=(), dtype=float64) -Train Accuracy 0.62650603
+epoch  93 -cost  0.6348639 -mse Tensor("Mean\_188:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  94 -cost  0.6595079 -mse Tensor("Mean\_190:0", shape=(), dtype=float64) -Train Accuracy 0.61445785
+epoch  95 -cost  0.6339324 -mse Tensor("Mean\_192:0", shape=(), dtype=float64) -Train Accuracy 0.61445785
+epoch  96 -cost  0.65827733 -mse Tensor("Mean\_194:0", shape=(), dtype=float64) -Train Accuracy 0.61445785
+epoch  97 -cost  0.6252953 -mse Tensor("Mean\_196:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  98 -cost  0.64546394 -mse Tensor("Mean\_198:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  99 -cost  0.6270359 -mse Tensor("Mean\_200:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  100 -cost  0.6503586 -mse Tensor("Mean\_202:0", shape=(), dtype=float64) -Train Accuracy 0.6204819
+epoch  101 -cost  0.6232791 -mse Tensor("Mean\_204:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  102 -cost  0.64411676 -mse Tensor("Mean\_206:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  103 -cost  0.6137925 -mse Tensor("Mean\_208:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  104 -cost  0.6377155 -mse Tensor("Mean\_210:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  105 -cost  0.62467444 -mse Tensor("Mean\_212:0", shape=(), dtype=float64) -Train Accuracy 0.6204819
+epoch  106 -cost  0.65156704 -mse Tensor("Mean\_214:0", shape=(), dtype=float64) -Train Accuracy 0.6204819
+epoch  107 -cost  0.61780715 -mse Tensor("Mean\_216:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  108 -cost  0.6406999 -mse Tensor("Mean\_218:0", shape=(), dtype=float64) -Train Accuracy 0.6325301
+epoch  109 -cost  0.6144521 -mse Tensor("Mean\_220:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  110 -cost  0.63899326 -mse Tensor("Mean\_222:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  111 -cost  0.61722696 -mse Tensor("Mean\_224:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  112 -cost  0.64247185 -mse Tensor("Mean\_226:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  113 -cost  0.6087186 -mse Tensor("Mean\_228:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  114 -cost  0.6318236 -mse Tensor("Mean\_230:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  115 -cost  0.61301285 -mse Tensor("Mean\_232:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  116 -cost  0.6344967 -mse Tensor("Mean\_234:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  117 -cost  0.6006571 -mse Tensor("Mean\_236:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  118 -cost  0.6183947 -mse Tensor("Mean\_238:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  119 -cost  0.60075593 -mse Tensor("Mean\_240:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  120 -cost  0.62636375 -mse Tensor("Mean\_242:0", shape=(), dtype=float64) -Train Accuracy 0.686747
+epoch  121 -cost  0.6061035 -mse Tensor("Mean\_244:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  122 -cost  0.63237834 -mse Tensor("Mean\_246:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  123 -cost  0.5998562 -mse Tensor("Mean\_248:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  124 -cost  0.6263981 -mse Tensor("Mean\_250:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  125 -cost  0.60209644 -mse Tensor("Mean\_252:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  126 -cost  0.6277963 -mse Tensor("Mean\_254:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  127 -cost  0.5958944 -mse Tensor("Mean\_256:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  128 -cost  0.6198766 -mse Tensor("Mean\_258:0", shape=(), dtype=float64) -Train Accuracy 0.6807229
+epoch  129 -cost  0.594466 -mse Tensor("Mean\_260:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  130 -cost  0.62057525 -mse Tensor("Mean\_262:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  131 -cost  0.5962558 -mse Tensor("Mean\_264:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  132 -cost  0.6257324 -mse Tensor("Mean\_266:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  133 -cost  0.5949411 -mse Tensor("Mean\_268:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  134 -cost  0.6268192 -mse Tensor("Mean\_270:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  135 -cost  0.59716076 -mse Tensor("Mean\_272:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  136 -cost  0.6257295 -mse Tensor("Mean\_274:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  137 -cost  0.58353394 -mse Tensor("Mean\_276:0", shape=(), dtype=float64) -Train Accuracy 0.686747
+epoch  138 -cost  0.6041001 -mse Tensor("Mean\_278:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  139 -cost  0.5791468 -mse Tensor("Mean\_280:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  140 -cost  0.6238254 -mse Tensor("Mean\_282:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  141 -cost  0.611658 -mse Tensor("Mean\_284:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  142 -cost  0.66437995 -mse Tensor("Mean\_286:0", shape=(), dtype=float64) -Train Accuracy 0.57831323
+epoch  143 -cost  0.5785572 -mse Tensor("Mean\_288:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  144 -cost  0.59811497 -mse Tensor("Mean\_290:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  145 -cost  0.5756823 -mse Tensor("Mean\_292:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  146 -cost  0.60175 -mse Tensor("Mean\_294:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  147 -cost  0.58140576 -mse Tensor("Mean\_296:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  148 -cost  0.6109826 -mse Tensor("Mean\_298:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  149 -cost  0.5789502 -mse Tensor("Mean\_300:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  150 -cost  0.61239773 -mse Tensor("Mean\_302:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  151 -cost  0.5796885 -mse Tensor("Mean\_304:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  152 -cost  0.6197768 -mse Tensor("Mean\_306:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  153 -cost  0.5793029 -mse Tensor("Mean\_308:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  154 -cost  0.6127409 -mse Tensor("Mean\_310:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  155 -cost  0.5702711 -mse Tensor("Mean\_312:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  156 -cost  0.5977242 -mse Tensor("Mean\_314:0", shape=(), dtype=float64) -Train Accuracy 0.686747
+epoch  157 -cost  0.57451254 -mse Tensor("Mean\_316:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  158 -cost  0.6178875 -mse Tensor("Mean\_318:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  159 -cost  0.5744413 -mse Tensor("Mean\_320:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  160 -cost  0.6117117 -mse Tensor("Mean\_322:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  161 -cost  0.56098247 -mse Tensor("Mean\_324:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  162 -cost  0.587704 -mse Tensor("Mean\_326:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  163 -cost  0.5771816 -mse Tensor("Mean\_328:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  164 -cost  0.6365978 -mse Tensor("Mean\_330:0", shape=(), dtype=float64) -Train Accuracy 0.62650603
+epoch  165 -cost  0.5770485 -mse Tensor("Mean\_332:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  166 -cost  0.61905897 -mse Tensor("Mean\_334:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  167 -cost  0.562045 -mse Tensor("Mean\_336:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  168 -cost  0.58691317 -mse Tensor("Mean\_338:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  169 -cost  0.5544543 -mse Tensor("Mean\_340:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  170 -cost  0.5817853 -mse Tensor("Mean\_342:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  171 -cost  0.55993164 -mse Tensor("Mean\_344:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  172 -cost  0.6081184 -mse Tensor("Mean\_346:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  173 -cost  0.57781994 -mse Tensor("Mean\_348:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  174 -cost  0.6391983 -mse Tensor("Mean\_350:0", shape=(), dtype=float64) -Train Accuracy 0.61445785
+epoch  175 -cost  0.5590151 -mse Tensor("Mean\_352:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  176 -cost  0.59893686 -mse Tensor("Mean\_354:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  177 -cost  0.5560992 -mse Tensor("Mean\_356:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  178 -cost  0.59159654 -mse Tensor("Mean\_358:0", shape=(), dtype=float64) -Train Accuracy 0.6807229
+epoch  179 -cost  0.5538229 -mse Tensor("Mean\_360:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  180 -cost  0.59298074 -mse Tensor("Mean\_362:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  181 -cost  0.55770874 -mse Tensor("Mean\_364:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  182 -cost  0.6085779 -mse Tensor("Mean\_366:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  183 -cost  0.5691178 -mse Tensor("Mean\_368:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  184 -cost  0.6225264 -mse Tensor("Mean\_370:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  185 -cost  0.5626648 -mse Tensor("Mean\_372:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  186 -cost  0.599641 -mse Tensor("Mean\_374:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  187 -cost  0.5437083 -mse Tensor("Mean\_376:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  188 -cost  0.575723 -mse Tensor("Mean\_378:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  189 -cost  0.5395599 -mse Tensor("Mean\_380:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  190 -cost  0.5775357 -mse Tensor("Mean\_382:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  191 -cost  0.5531904 -mse Tensor("Mean\_384:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  192 -cost  0.6100447 -mse Tensor("Mean\_386:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  193 -cost  0.5624545 -mse Tensor("Mean\_388:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  194 -cost  0.6170864 -mse Tensor("Mean\_390:0", shape=(), dtype=float64) -Train Accuracy 0.6325301
+epoch  195 -cost  0.5516915 -mse Tensor("Mean\_392:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  196 -cost  0.5955776 -mse Tensor("Mean\_394:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  197 -cost  0.53738815 -mse Tensor("Mean\_396:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  198 -cost  0.5752817 -mse Tensor("Mean\_398:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  199 -cost  0.5402303 -mse Tensor("Mean\_400:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  200 -cost  0.5891737 -mse Tensor("Mean\_402:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  201 -cost  0.5401175 -mse Tensor("Mean\_404:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  202 -cost  0.5984956 -mse Tensor("Mean\_406:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  203 -cost  0.555975 -mse Tensor("Mean\_408:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  204 -cost  0.62078416 -mse Tensor("Mean\_410:0", shape=(), dtype=float64) -Train Accuracy 0.6325301
+epoch  205 -cost  0.56455624 -mse Tensor("Mean\_412:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  206 -cost  0.6184706 -mse Tensor("Mean\_414:0", shape=(), dtype=float64) -Train Accuracy 0.62650603
+epoch  207 -cost  0.52678126 -mse Tensor("Mean\_416:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  208 -cost  0.55461293 -mse Tensor("Mean\_418:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  209 -cost  0.5147921 -mse Tensor("Mean\_420:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  210 -cost  0.54840297 -mse Tensor("Mean\_422:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  211 -cost  0.52551496 -mse Tensor("Mean\_424:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  212 -cost  0.5948752 -mse Tensor("Mean\_426:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  213 -cost  0.5648635 -mse Tensor("Mean\_428:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  214 -cost  0.6553386 -mse Tensor("Mean\_430:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  215 -cost  0.54998183 -mse Tensor("Mean\_432:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  216 -cost  0.595791 -mse Tensor("Mean\_434:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  217 -cost  0.52605486 -mse Tensor("Mean\_436:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  218 -cost  0.5618446 -mse Tensor("Mean\_438:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  219 -cost  0.5100595 -mse Tensor("Mean\_440:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  220 -cost  0.5413101 -mse Tensor("Mean\_442:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  221 -cost  0.5112296 -mse Tensor("Mean\_444:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  222 -cost  0.55495745 -mse Tensor("Mean\_446:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  223 -cost  0.5739936 -mse Tensor("Mean\_448:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  224 -cost  0.7147672 -mse Tensor("Mean\_450:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  225 -cost  0.53212285 -mse Tensor("Mean\_452:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  226 -cost  0.5654759 -mse Tensor("Mean\_454:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  227 -cost  0.526836 -mse Tensor("Mean\_456:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  228 -cost  0.5641379 -mse Tensor("Mean\_458:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  229 -cost  0.5426661 -mse Tensor("Mean\_460:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  230 -cost  0.60427064 -mse Tensor("Mean\_462:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  231 -cost  0.5458975 -mse Tensor("Mean\_464:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  232 -cost  0.5986447 -mse Tensor("Mean\_466:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  233 -cost  0.5184757 -mse Tensor("Mean\_468:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  234 -cost  0.5472794 -mse Tensor("Mean\_470:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  235 -cost  0.49825352 -mse Tensor("Mean\_472:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  236 -cost  0.5319189 -mse Tensor("Mean\_474:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  237 -cost  0.51850337 -mse Tensor("Mean\_476:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  238 -cost  0.61734504 -mse Tensor("Mean\_478:0", shape=(), dtype=float64) -Train Accuracy 0.6204819
+epoch  239 -cost  0.586761 -mse Tensor("Mean\_480:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  240 -cost  0.66284573 -mse Tensor("Mean\_482:0", shape=(), dtype=float64) -Train Accuracy 0.57228917
+epoch  241 -cost  0.4590985 -mse Tensor("Mean\_484:0", shape=(), dtype=float64) -Train Accuracy 0.7710843
+epoch  242 -cost  0.45273912 -mse Tensor("Mean\_486:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  243 -cost  0.43896016 -mse Tensor("Mean\_488:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  244 -cost  0.44375473 -mse Tensor("Mean\_490:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  245 -cost  0.44453916 -mse Tensor("Mean\_492:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  246 -cost  0.48202643 -mse Tensor("Mean\_494:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  247 -cost  0.54319364 -mse Tensor("Mean\_496:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  248 -cost  0.73550826 -mse Tensor("Mean\_498:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  249 -cost  0.57527703 -mse Tensor("Mean\_500:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  250 -cost  0.60099906 -mse Tensor("Mean\_502:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  251 -cost  0.4619929 -mse Tensor("Mean\_504:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  252 -cost  0.44268003 -mse Tensor("Mean\_506:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  253 -cost  0.4150833 -mse Tensor("Mean\_508:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  254 -cost  0.412177 -mse Tensor("Mean\_510:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  255 -cost  0.41894597 -mse Tensor("Mean\_512:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  256 -cost  0.45075107 -mse Tensor("Mean\_514:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  257 -cost  0.5259005 -mse Tensor("Mean\_516:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  258 -cost  0.7282573 -mse Tensor("Mean\_518:0", shape=(), dtype=float64) -Train Accuracy 0.56626505
+epoch  259 -cost  0.5499589 -mse Tensor("Mean\_520:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  260 -cost  0.59727067 -mse Tensor("Mean\_522:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  261 -cost  0.46780622 -mse Tensor("Mean\_524:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  262 -cost  0.4585872 -mse Tensor("Mean\_526:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  263 -cost  0.42433107 -mse Tensor("Mean\_528:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  264 -cost  0.4254983 -mse Tensor("Mean\_530:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  265 -cost  0.43765733 -mse Tensor("Mean\_532:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  266 -cost  0.5019967 -mse Tensor("Mean\_534:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  267 -cost  0.63742274 -mse Tensor("Mean\_536:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  268 -cost  0.82525396 -mse Tensor("Mean\_538:0", shape=(), dtype=float64) -Train Accuracy 0.48795182
+epoch  269 -cost  0.4882594 -mse Tensor("Mean\_540:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  270 -cost  0.45740244 -mse Tensor("Mean\_542:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  271 -cost  0.44893646 -mse Tensor("Mean\_544:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  272 -cost  0.43936563 -mse Tensor("Mean\_546:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  273 -cost  0.42816487 -mse Tensor("Mean\_548:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  274 -cost  0.42351362 -mse Tensor("Mean\_550:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  275 -cost  0.44212666 -mse Tensor("Mean\_552:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  276 -cost  0.55057484 -mse Tensor("Mean\_554:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  277 -cost  0.76607823 -mse Tensor("Mean\_556:0", shape=(), dtype=float64) -Train Accuracy 0.5421687
+epoch  278 -cost  0.42209947 -mse Tensor("Mean\_558:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  279 -cost  0.4025218 -mse Tensor("Mean\_560:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  280 -cost  0.38799682 -mse Tensor("Mean\_562:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  281 -cost  0.38537344 -mse Tensor("Mean\_564:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  282 -cost  0.39478567 -mse Tensor("Mean\_566:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  283 -cost  0.42926753 -mse Tensor("Mean\_568:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  284 -cost  0.55550975 -mse Tensor("Mean\_570:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  285 -cost  0.855778 -mse Tensor("Mean\_572:0", shape=(), dtype=float64) -Train Accuracy 0.5120482
+epoch  286 -cost  0.4370669 -mse Tensor("Mean\_574:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  287 -cost  0.4273361 -mse Tensor("Mean\_576:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  288 -cost  0.4201945 -mse Tensor("Mean\_578:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  289 -cost  0.41486484 -mse Tensor("Mean\_580:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  290 -cost  0.4104668 -mse Tensor("Mean\_582:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  291 -cost  0.40678567 -mse Tensor("Mean\_584:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  292 -cost  0.40976512 -mse Tensor("Mean\_586:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  293 -cost  0.43378136 -mse Tensor("Mean\_588:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  294 -cost  0.521193 -mse Tensor("Mean\_590:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  295 -cost  0.74785984 -mse Tensor("Mean\_592:0", shape=(), dtype=float64) -Train Accuracy 0.6807229
+epoch  296 -cost  0.8620061 -mse Tensor("Mean\_594:0", shape=(), dtype=float64) -Train Accuracy 0.46385542
+epoch  297 -cost  0.7557346 -mse Tensor("Mean\_596:0", shape=(), dtype=float64) -Train Accuracy 0.48795182
+epoch  298 -cost  0.6695118 -mse Tensor("Mean\_598:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  299 -cost  0.532136 -mse Tensor("Mean\_600:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  300 -cost  0.41610253 -mse Tensor("Mean\_602:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  301 -cost  0.41662312 -mse Tensor("Mean\_604:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  302 -cost  0.48221606 -mse Tensor("Mean\_606:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  303 -cost  0.5997784 -mse Tensor("Mean\_608:0", shape=(), dtype=float64) -Train Accuracy 0.6325301
+epoch  304 -cost  0.50297135 -mse Tensor("Mean\_610:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  305 -cost  0.52574146 -mse Tensor("Mean\_612:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  306 -cost  0.40630266 -mse Tensor("Mean\_614:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  307 -cost  0.3960797 -mse Tensor("Mean\_616:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  308 -cost  0.39652753 -mse Tensor("Mean\_618:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  309 -cost  0.40978888 -mse Tensor("Mean\_620:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  310 -cost  0.45834938 -mse Tensor("Mean\_622:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  311 -cost  0.56216687 -mse Tensor("Mean\_624:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  312 -cost  0.57418615 -mse Tensor("Mean\_626:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  313 -cost  0.6002884 -mse Tensor("Mean\_628:0", shape=(), dtype=float64) -Train Accuracy 0.6204819
+epoch  314 -cost  0.38894778 -mse Tensor("Mean\_630:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  315 -cost  0.3712499 -mse Tensor("Mean\_632:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  316 -cost  0.3623122 -mse Tensor("Mean\_634:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  317 -cost  0.35012498 -mse Tensor("Mean\_636:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  318 -cost  0.340526 -mse Tensor("Mean\_638:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  319 -cost  0.33634582 -mse Tensor("Mean\_640:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  320 -cost  0.3364936 -mse Tensor("Mean\_642:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  321 -cost  0.36451423 -mse Tensor("Mean\_644:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  322 -cost  0.5978003 -mse Tensor("Mean\_646:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  323 -cost  0.9196903 -mse Tensor("Mean\_648:0", shape=(), dtype=float64) -Train Accuracy 0.5180723
+epoch  324 -cost  0.45455417 -mse Tensor("Mean\_650:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  325 -cost  0.44399577 -mse Tensor("Mean\_652:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  326 -cost  0.43493414 -mse Tensor("Mean\_654:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  327 -cost  0.42668247 -mse Tensor("Mean\_656:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  328 -cost  0.41940427 -mse Tensor("Mean\_658:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  329 -cost  0.413022 -mse Tensor("Mean\_660:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  330 -cost  0.4074502 -mse Tensor("Mean\_662:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  331 -cost  0.40272266 -mse Tensor("Mean\_664:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  332 -cost  0.40012243 -mse Tensor("Mean\_666:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  333 -cost  0.40776494 -mse Tensor("Mean\_668:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  334 -cost  0.46316352 -mse Tensor("Mean\_670:0", shape=(), dtype=float64) -Train Accuracy 0.7710843
+epoch  335 -cost  0.65490556 -mse Tensor("Mean\_672:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  336 -cost  0.79058045 -mse Tensor("Mean\_674:0", shape=(), dtype=float64) -Train Accuracy 0.4939759
+epoch  337 -cost  0.6882046 -mse Tensor("Mean\_676:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  338 -cost  0.5473313 -mse Tensor("Mean\_678:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  339 -cost  0.4222726 -mse Tensor("Mean\_680:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  340 -cost  0.43906617 -mse Tensor("Mean\_682:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  341 -cost  0.4768799 -mse Tensor("Mean\_684:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  342 -cost  0.60261595 -mse Tensor("Mean\_686:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  343 -cost  0.42848197 -mse Tensor("Mean\_688:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  344 -cost  0.46446577 -mse Tensor("Mean\_690:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  345 -cost  0.48531052 -mse Tensor("Mean\_692:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  346 -cost  0.59848946 -mse Tensor("Mean\_694:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  347 -cost  0.40292782 -mse Tensor("Mean\_696:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  348 -cost  0.39959073 -mse Tensor("Mean\_698:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  349 -cost  0.39140517 -mse Tensor("Mean\_700:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  350 -cost  0.45928454 -mse Tensor("Mean\_702:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  351 -cost  0.64851606 -mse Tensor("Mean\_704:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  352 -cost  0.7590513 -mse Tensor("Mean\_706:0", shape=(), dtype=float64) -Train Accuracy 0.5301205
+epoch  353 -cost  0.5300102 -mse Tensor("Mean\_708:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  354 -cost  0.4384023 -mse Tensor("Mean\_710:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  355 -cost  0.44552466 -mse Tensor("Mean\_712:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  356 -cost  0.41919443 -mse Tensor("Mean\_714:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  357 -cost  0.42903462 -mse Tensor("Mean\_716:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  358 -cost  0.4240962 -mse Tensor("Mean\_718:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  359 -cost  0.51707953 -mse Tensor("Mean\_720:0", shape=(), dtype=float64) -Train Accuracy 0.6807229
+epoch  360 -cost  0.6315385 -mse Tensor("Mean\_722:0", shape=(), dtype=float64) -Train Accuracy 0.7108434
+epoch  361 -cost  0.69765484 -mse Tensor("Mean\_724:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  362 -cost  0.43053773 -mse Tensor("Mean\_726:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  363 -cost  0.38726526 -mse Tensor("Mean\_728:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  364 -cost  0.4039154 -mse Tensor("Mean\_730:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  365 -cost  0.45798653 -mse Tensor("Mean\_732:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  366 -cost  0.55407184 -mse Tensor("Mean\_734:0", shape=(), dtype=float64) -Train Accuracy 0.6626506
+epoch  367 -cost  0.56264544 -mse Tensor("Mean\_736:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  368 -cost  0.6048272 -mse Tensor("Mean\_738:0", shape=(), dtype=float64) -Train Accuracy 0.64457834
+epoch  369 -cost  0.3720767 -mse Tensor("Mean\_740:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  370 -cost  0.35081127 -mse Tensor("Mean\_742:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  371 -cost  0.33251286 -mse Tensor("Mean\_744:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  372 -cost  0.3205174 -mse Tensor("Mean\_746:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  373 -cost  0.31353486 -mse Tensor("Mean\_748:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  374 -cost  0.30917224 -mse Tensor("Mean\_750:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  375 -cost  0.30501845 -mse Tensor("Mean\_752:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  376 -cost  0.30464354 -mse Tensor("Mean\_754:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  377 -cost  0.3312385 -mse Tensor("Mean\_756:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  378 -cost  0.57065797 -mse Tensor("Mean\_758:0", shape=(), dtype=float64) -Train Accuracy 0.67469877
+epoch  379 -cost  1.5782006 -mse Tensor("Mean\_760:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  380 -cost  0.9468711 -mse Tensor("Mean\_762:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  381 -cost  0.788356 -mse Tensor("Mean\_764:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  382 -cost  0.7454836 -mse Tensor("Mean\_766:0", shape=(), dtype=float64) -Train Accuracy 0.45180723
+epoch  383 -cost  0.71178967 -mse Tensor("Mean\_768:0", shape=(), dtype=float64) -Train Accuracy 0.45783132
+epoch  384 -cost  0.6825092 -mse Tensor("Mean\_770:0", shape=(), dtype=float64) -Train Accuracy 0.46385542
+epoch  385 -cost  0.6555072 -mse Tensor("Mean\_772:0", shape=(), dtype=float64) -Train Accuracy 0.45783132
+epoch  386 -cost  0.62886995 -mse Tensor("Mean\_774:0", shape=(), dtype=float64) -Train Accuracy 0.48192772
+epoch  387 -cost  0.6050023 -mse Tensor("Mean\_776:0", shape=(), dtype=float64) -Train Accuracy 0.48795182
+epoch  388 -cost  0.58495086 -mse Tensor("Mean\_778:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  389 -cost  0.5673571 -mse Tensor("Mean\_780:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  390 -cost  0.5516671 -mse Tensor("Mean\_782:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  391 -cost  0.53725725 -mse Tensor("Mean\_784:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  392 -cost  0.5235439 -mse Tensor("Mean\_786:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  393 -cost  0.5142972 -mse Tensor("Mean\_788:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  394 -cost  0.5108759 -mse Tensor("Mean\_790:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  395 -cost  0.5493037 -mse Tensor("Mean\_792:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  396 -cost  0.47105592 -mse Tensor("Mean\_794:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  397 -cost  0.4649893 -mse Tensor("Mean\_796:0", shape=(), dtype=float64) -Train Accuracy 0.7710843
+epoch  398 -cost  0.46545443 -mse Tensor("Mean\_798:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  399 -cost  0.51340234 -mse Tensor("Mean\_800:0", shape=(), dtype=float64) -Train Accuracy 0.6987952
+epoch  400 -cost  0.4006843 -mse Tensor("Mean\_802:0", shape=(), dtype=float64) -Train Accuracy 0.7710843
+epoch  401 -cost  0.36585155 -mse Tensor("Mean\_804:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  402 -cost  0.38235617 -mse Tensor("Mean\_806:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  403 -cost  0.36478347 -mse Tensor("Mean\_808:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  404 -cost  0.47100085 -mse Tensor("Mean\_810:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  405 -cost  0.35619506 -mse Tensor("Mean\_812:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  406 -cost  0.40181497 -mse Tensor("Mean\_814:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  407 -cost  0.37821907 -mse Tensor("Mean\_816:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  408 -cost  0.5360804 -mse Tensor("Mean\_818:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  409 -cost  0.36200723 -mse Tensor("Mean\_820:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  410 -cost  0.32155535 -mse Tensor("Mean\_822:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  411 -cost  0.32298523 -mse Tensor("Mean\_824:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  412 -cost  0.44809586 -mse Tensor("Mean\_826:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  413 -cost  0.3816816 -mse Tensor("Mean\_828:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  414 -cost  0.51885474 -mse Tensor("Mean\_830:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  415 -cost  0.3512495 -mse Tensor("Mean\_832:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  416 -cost  0.29875544 -mse Tensor("Mean\_834:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  417 -cost  0.2815117 -mse Tensor("Mean\_836:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  418 -cost  0.27905414 -mse Tensor("Mean\_838:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  419 -cost  0.32254186 -mse Tensor("Mean\_840:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  420 -cost  0.604334 -mse Tensor("Mean\_842:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  421 -cost  0.4994774 -mse Tensor("Mean\_844:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  422 -cost  0.5084316 -mse Tensor("Mean\_846:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  423 -cost  0.36729816 -mse Tensor("Mean\_848:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  424 -cost  0.27926254 -mse Tensor("Mean\_850:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  425 -cost  0.25513354 -mse Tensor("Mean\_852:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  426 -cost  0.25172535 -mse Tensor("Mean\_854:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  427 -cost  0.3252598 -mse Tensor("Mean\_856:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  428 -cost  0.8100845 -mse Tensor("Mean\_858:0", shape=(), dtype=float64) -Train Accuracy 0.6385542
+epoch  429 -cost  0.57548124 -mse Tensor("Mean\_860:0", shape=(), dtype=float64) -Train Accuracy 0.6506024
+epoch  430 -cost  0.4910476 -mse Tensor("Mean\_862:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  431 -cost  0.36732286 -mse Tensor("Mean\_864:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  432 -cost  0.30492195 -mse Tensor("Mean\_866:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  433 -cost  0.29285032 -mse Tensor("Mean\_868:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  434 -cost  0.31326193 -mse Tensor("Mean\_870:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  435 -cost  0.43613333 -mse Tensor("Mean\_872:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  436 -cost  0.3599103 -mse Tensor("Mean\_874:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  437 -cost  0.38883674 -mse Tensor("Mean\_876:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  438 -cost  0.30191472 -mse Tensor("Mean\_878:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  439 -cost  0.27279785 -mse Tensor("Mean\_880:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  440 -cost  0.3055748 -mse Tensor("Mean\_882:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  441 -cost  0.5577465 -mse Tensor("Mean\_884:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  442 -cost  0.4523377 -mse Tensor("Mean\_886:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  443 -cost  0.37752035 -mse Tensor("Mean\_888:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  444 -cost  0.30005288 -mse Tensor("Mean\_890:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  445 -cost  0.26868126 -mse Tensor("Mean\_892:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  446 -cost  0.31983075 -mse Tensor("Mean\_894:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  447 -cost  0.6469864 -mse Tensor("Mean\_896:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  448 -cost  0.48155984 -mse Tensor("Mean\_898:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  449 -cost  0.45493436 -mse Tensor("Mean\_900:0", shape=(), dtype=float64) -Train Accuracy 0.72289157
+epoch  450 -cost  0.35249674 -mse Tensor("Mean\_902:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  451 -cost  0.28736395 -mse Tensor("Mean\_904:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  452 -cost  0.24547514 -mse Tensor("Mean\_906:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  453 -cost  0.2276641 -mse Tensor("Mean\_908:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  454 -cost  0.22615707 -mse Tensor("Mean\_910:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  455 -cost  0.28690273 -mse Tensor("Mean\_912:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  456 -cost  0.6475512 -mse Tensor("Mean\_914:0", shape=(), dtype=float64) -Train Accuracy 0.6927711
+epoch  457 -cost  1.5809435 -mse Tensor("Mean\_916:0", shape=(), dtype=float64) -Train Accuracy 0.56626505
+epoch  458 -cost  1.2533706 -mse Tensor("Mean\_918:0", shape=(), dtype=float64) -Train Accuracy 0.44578314
+epoch  459 -cost  0.65970117 -mse Tensor("Mean\_920:0", shape=(), dtype=float64) -Train Accuracy 0.56626505
+epoch  460 -cost  0.63966143 -mse Tensor("Mean\_922:0", shape=(), dtype=float64) -Train Accuracy 0.5903614
+epoch  461 -cost  0.5934311 -mse Tensor("Mean\_924:0", shape=(), dtype=float64) -Train Accuracy 0.6807229
+epoch  462 -cost  0.52298874 -mse Tensor("Mean\_926:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  463 -cost  0.46518257 -mse Tensor("Mean\_928:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  464 -cost  0.4064837 -mse Tensor("Mean\_930:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  465 -cost  0.37198597 -mse Tensor("Mean\_932:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  466 -cost  0.34667975 -mse Tensor("Mean\_934:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  467 -cost  0.33728245 -mse Tensor("Mean\_936:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  468 -cost  0.35174927 -mse Tensor("Mean\_938:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  469 -cost  0.43800902 -mse Tensor("Mean\_940:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  470 -cost  0.36688945 -mse Tensor("Mean\_942:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  471 -cost  0.4291309 -mse Tensor("Mean\_944:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  472 -cost  0.33859769 -mse Tensor("Mean\_946:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  473 -cost  0.32166207 -mse Tensor("Mean\_948:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  474 -cost  0.3664424 -mse Tensor("Mean\_950:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  475 -cost  0.5501049 -mse Tensor("Mean\_952:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  476 -cost  0.37407055 -mse Tensor("Mean\_954:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  477 -cost  0.3518457 -mse Tensor("Mean\_956:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  478 -cost  0.30998993 -mse Tensor("Mean\_958:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  479 -cost  0.31970978 -mse Tensor("Mean\_960:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  480 -cost  0.44551834 -mse Tensor("Mean\_962:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  481 -cost  0.8533439 -mse Tensor("Mean\_964:0", shape=(), dtype=float64) -Train Accuracy 0.6084337
+epoch  482 -cost  0.47105935 -mse Tensor("Mean\_966:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  483 -cost  0.40344173 -mse Tensor("Mean\_968:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  484 -cost  0.3458459 -mse Tensor("Mean\_970:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  485 -cost  0.30510238 -mse Tensor("Mean\_972:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  486 -cost  0.2878966 -mse Tensor("Mean\_974:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  487 -cost  0.2835768 -mse Tensor("Mean\_976:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  488 -cost  0.2951698 -mse Tensor("Mean\_978:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  489 -cost  0.43697315 -mse Tensor("Mean\_980:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  490 -cost  0.8980455 -mse Tensor("Mean\_982:0", shape=(), dtype=float64) -Train Accuracy 0.58433735
+epoch  491 -cost  0.446354 -mse Tensor("Mean\_984:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  492 -cost  0.38262174 -mse Tensor("Mean\_986:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  493 -cost  0.35072774 -mse Tensor("Mean\_988:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  494 -cost  0.3454562 -mse Tensor("Mean\_990:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  495 -cost  0.4588476 -mse Tensor("Mean\_992:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  496 -cost  0.30065322 -mse Tensor("Mean\_994:0", shape=(), dtype=float64) -Train Accuracy 0.90361446
+epoch  497 -cost  0.28065625 -mse Tensor("Mean\_996:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  498 -cost  0.3000138 -mse Tensor("Mean\_998:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  499 -cost  0.5300927 -mse Tensor("Mean\_1000:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  500 -cost  1.0237528 -mse Tensor("Mean\_1002:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  501 -cost  0.52446043 -mse Tensor("Mean\_1004:0", shape=(), dtype=float64) -Train Accuracy 0.7710843
+epoch  502 -cost  0.4427865 -mse Tensor("Mean\_1006:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  503 -cost  0.35548818 -mse Tensor("Mean\_1008:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  504 -cost  0.3208763 -mse Tensor("Mean\_1010:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  505 -cost  0.32040352 -mse Tensor("Mean\_1012:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  506 -cost  0.35098484 -mse Tensor("Mean\_1014:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  507 -cost  0.5089943 -mse Tensor("Mean\_1016:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  508 -cost  0.30135062 -mse Tensor("Mean\_1018:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  509 -cost  0.27312896 -mse Tensor("Mean\_1020:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  510 -cost  0.26398826 -mse Tensor("Mean\_1022:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  511 -cost  0.26567957 -mse Tensor("Mean\_1024:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  512 -cost  0.31551385 -mse Tensor("Mean\_1026:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  513 -cost  0.5359234 -mse Tensor("Mean\_1028:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  514 -cost  0.33268642 -mse Tensor("Mean\_1030:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  515 -cost  0.35472283 -mse Tensor("Mean\_1032:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  516 -cost  0.3023011 -mse Tensor("Mean\_1034:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  517 -cost  0.37627134 -mse Tensor("Mean\_1036:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  518 -cost  0.30223763 -mse Tensor("Mean\_1038:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  519 -cost  0.3825584 -mse Tensor("Mean\_1040:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  520 -cost  0.28630352 -mse Tensor("Mean\_1042:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  521 -cost  0.32432458 -mse Tensor("Mean\_1044:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  522 -cost  0.3219876 -mse Tensor("Mean\_1046:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  523 -cost  0.52068526 -mse Tensor("Mean\_1048:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  524 -cost  0.31864977 -mse Tensor("Mean\_1050:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  525 -cost  0.2684094 -mse Tensor("Mean\_1052:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  526 -cost  0.27982408 -mse Tensor("Mean\_1054:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  527 -cost  0.4232846 -mse Tensor("Mean\_1056:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  528 -cost  0.35168773 -mse Tensor("Mean\_1058:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  529 -cost  0.50564075 -mse Tensor("Mean\_1060:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  530 -cost  0.31023148 -mse Tensor("Mean\_1062:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  531 -cost  0.25883016 -mse Tensor("Mean\_1064:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  532 -cost  0.28208858 -mse Tensor("Mean\_1066:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  533 -cost  0.34294236 -mse Tensor("Mean\_1068:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  534 -cost  0.6417351 -mse Tensor("Mean\_1070:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  535 -cost  0.35029918 -mse Tensor("Mean\_1072:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  536 -cost  0.29053745 -mse Tensor("Mean\_1074:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  537 -cost  0.2593834 -mse Tensor("Mean\_1076:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  538 -cost  0.33555818 -mse Tensor("Mean\_1078:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  539 -cost  0.29697138 -mse Tensor("Mean\_1080:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  540 -cost  0.4514532 -mse Tensor("Mean\_1082:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  541 -cost  0.2905158 -mse Tensor("Mean\_1084:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  542 -cost  0.24817543 -mse Tensor("Mean\_1086:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  543 -cost  0.30787525 -mse Tensor("Mean\_1088:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  544 -cost  0.5897103 -mse Tensor("Mean\_1090:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  545 -cost  0.35272482 -mse Tensor("Mean\_1092:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  546 -cost  0.31564793 -mse Tensor("Mean\_1094:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  547 -cost  0.23827691 -mse Tensor("Mean\_1096:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  548 -cost  0.2215644 -mse Tensor("Mean\_1098:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  549 -cost  0.23978698 -mse Tensor("Mean\_1100:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  550 -cost  0.36451355 -mse Tensor("Mean\_1102:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  551 -cost  0.33602664 -mse Tensor("Mean\_1104:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  552 -cost  0.59025234 -mse Tensor("Mean\_1106:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  553 -cost  0.33806184 -mse Tensor("Mean\_1108:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  554 -cost  0.25348878 -mse Tensor("Mean\_1110:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  555 -cost  0.21867715 -mse Tensor("Mean\_1112:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  556 -cost  0.2225037 -mse Tensor("Mean\_1114:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  557 -cost  0.30284178 -mse Tensor("Mean\_1116:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  558 -cost  0.4343486 -mse Tensor("Mean\_1118:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  559 -cost  1.0372696 -mse Tensor("Mean\_1120:0", shape=(), dtype=float64) -Train Accuracy 0.560241
+epoch  560 -cost  0.5410093 -mse Tensor("Mean\_1122:0", shape=(), dtype=float64) -Train Accuracy 0.70481926
+epoch  561 -cost  0.41004816 -mse Tensor("Mean\_1124:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  562 -cost  0.33544526 -mse Tensor("Mean\_1126:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  563 -cost  0.26492321 -mse Tensor("Mean\_1128:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  564 -cost  0.22537532 -mse Tensor("Mean\_1130:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  565 -cost  0.2068743 -mse Tensor("Mean\_1132:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  566 -cost  0.20341522 -mse Tensor("Mean\_1134:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  567 -cost  0.2708575 -mse Tensor("Mean\_1136:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  568 -cost  0.5526411 -mse Tensor("Mean\_1138:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  569 -cost  0.29591054 -mse Tensor("Mean\_1140:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  570 -cost  0.2709551 -mse Tensor("Mean\_1142:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  571 -cost  0.28972498 -mse Tensor("Mean\_1144:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  572 -cost  0.54048544 -mse Tensor("Mean\_1146:0", shape=(), dtype=float64) -Train Accuracy 0.73493975
+epoch  573 -cost  0.26914522 -mse Tensor("Mean\_1148:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  574 -cost  0.22001818 -mse Tensor("Mean\_1150:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  575 -cost  0.1967743 -mse Tensor("Mean\_1152:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  576 -cost  0.235184 -mse Tensor("Mean\_1154:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  577 -cost  0.49614918 -mse Tensor("Mean\_1156:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  578 -cost  1.3281204 -mse Tensor("Mean\_1158:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  579 -cost  0.56259334 -mse Tensor("Mean\_1160:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  580 -cost  0.4331804 -mse Tensor("Mean\_1162:0", shape=(), dtype=float64) -Train Accuracy 0.8433735
+epoch  581 -cost  0.36895826 -mse Tensor("Mean\_1164:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  582 -cost  0.3060878 -mse Tensor("Mean\_1166:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  583 -cost  0.24912666 -mse Tensor("Mean\_1168:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  584 -cost  0.2108453 -mse Tensor("Mean\_1170:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  585 -cost  0.19202933 -mse Tensor("Mean\_1172:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  586 -cost  0.18365696 -mse Tensor("Mean\_1174:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  587 -cost  0.187725 -mse Tensor("Mean\_1176:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  588 -cost  0.24628155 -mse Tensor("Mean\_1178:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  589 -cost  0.6010352 -mse Tensor("Mean\_1180:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  590 -cost  1.5337592 -mse Tensor("Mean\_1182:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  591 -cost  0.64956653 -mse Tensor("Mean\_1184:0", shape=(), dtype=float64) -Train Accuracy 0.58433735
+epoch  592 -cost  0.5353722 -mse Tensor("Mean\_1186:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  593 -cost  0.4313156 -mse Tensor("Mean\_1188:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  594 -cost  0.36714107 -mse Tensor("Mean\_1190:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  595 -cost  0.31549326 -mse Tensor("Mean\_1192:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  596 -cost  0.27128816 -mse Tensor("Mean\_1194:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  597 -cost  0.24715805 -mse Tensor("Mean\_1196:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  598 -cost  0.22246806 -mse Tensor("Mean\_1198:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  599 -cost  0.22423506 -mse Tensor("Mean\_1200:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  600 -cost  0.28309095 -mse Tensor("Mean\_1202:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  601 -cost  0.49656847 -mse Tensor("Mean\_1204:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  602 -cost  0.26320055 -mse Tensor("Mean\_1206:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  603 -cost  0.22209245 -mse Tensor("Mean\_1208:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  604 -cost  0.24139324 -mse Tensor("Mean\_1210:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  605 -cost  0.3646495 -mse Tensor("Mean\_1212:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  606 -cost  0.23374413 -mse Tensor("Mean\_1214:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  607 -cost  0.24155532 -mse Tensor("Mean\_1216:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  608 -cost  0.21701957 -mse Tensor("Mean\_1218:0", shape=(), dtype=float64) -Train Accuracy 0.90361446
+epoch  609 -cost  0.2856755 -mse Tensor("Mean\_1220:0", shape=(), dtype=float64) -Train Accuracy 0.8493976
+epoch  610 -cost  0.2046202 -mse Tensor("Mean\_1222:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  611 -cost  0.21456222 -mse Tensor("Mean\_1224:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  612 -cost  0.3339398 -mse Tensor("Mean\_1226:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  613 -cost  0.7494602 -mse Tensor("Mean\_1228:0", shape=(), dtype=float64) -Train Accuracy 0.686747
+epoch  614 -cost  0.30653173 -mse Tensor("Mean\_1230:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  615 -cost  0.2328437 -mse Tensor("Mean\_1232:0", shape=(), dtype=float64) -Train Accuracy 0.94578314
+epoch  616 -cost  0.18853307 -mse Tensor("Mean\_1234:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  617 -cost  0.16467729 -mse Tensor("Mean\_1236:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  618 -cost  0.15996233 -mse Tensor("Mean\_1238:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  619 -cost  0.19065177 -mse Tensor("Mean\_1240:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  620 -cost  0.3885914 -mse Tensor("Mean\_1242:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  621 -cost  1.0269048 -mse Tensor("Mean\_1244:0", shape=(), dtype=float64) -Train Accuracy 0.61445785
+epoch  622 -cost  0.3812675 -mse Tensor("Mean\_1246:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  623 -cost  0.28928965 -mse Tensor("Mean\_1248:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  624 -cost  0.23576002 -mse Tensor("Mean\_1250:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  625 -cost  0.19077769 -mse Tensor("Mean\_1252:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  626 -cost  0.16475293 -mse Tensor("Mean\_1254:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  627 -cost  0.15419054 -mse Tensor("Mean\_1256:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  628 -cost  0.16620176 -mse Tensor("Mean\_1258:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  629 -cost  0.22915632 -mse Tensor("Mean\_1260:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  630 -cost  0.47336182 -mse Tensor("Mean\_1262:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  631 -cost  0.27719823 -mse Tensor("Mean\_1264:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  632 -cost  0.3266042 -mse Tensor("Mean\_1266:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  633 -cost  0.24396974 -mse Tensor("Mean\_1268:0", shape=(), dtype=float64) -Train Accuracy 0.90361446
+epoch  634 -cost  0.20341097 -mse Tensor("Mean\_1270:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  635 -cost  0.24507344 -mse Tensor("Mean\_1272:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  636 -cost  0.39667815 -mse Tensor("Mean\_1274:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  637 -cost  0.32002088 -mse Tensor("Mean\_1276:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  638 -cost  0.34950516 -mse Tensor("Mean\_1278:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  639 -cost  0.20954251 -mse Tensor("Mean\_1280:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  640 -cost  0.17419475 -mse Tensor("Mean\_1282:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  641 -cost  0.17345145 -mse Tensor("Mean\_1284:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  642 -cost  0.24742901 -mse Tensor("Mean\_1286:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  643 -cost  0.41963875 -mse Tensor("Mean\_1288:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  644 -cost  1.0282881 -mse Tensor("Mean\_1290:0", shape=(), dtype=float64) -Train Accuracy 0.59638554
+epoch  645 -cost  0.36271462 -mse Tensor("Mean\_1292:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  646 -cost  0.29099587 -mse Tensor("Mean\_1294:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  647 -cost  0.23354276 -mse Tensor("Mean\_1296:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  648 -cost  0.18638307 -mse Tensor("Mean\_1298:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  649 -cost  0.15616946 -mse Tensor("Mean\_1300:0", shape=(), dtype=float64) -Train Accuracy 0.96385545
+epoch  650 -cost  0.13996512 -mse Tensor("Mean\_1302:0", shape=(), dtype=float64) -Train Accuracy 0.96385545
+epoch  651 -cost  0.13205755 -mse Tensor("Mean\_1304:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  652 -cost  0.127661 -mse Tensor("Mean\_1306:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  653 -cost  0.12752387 -mse Tensor("Mean\_1308:0", shape=(), dtype=float64) -Train Accuracy 0.96385545
+epoch  654 -cost  0.13703525 -mse Tensor("Mean\_1310:0", shape=(), dtype=float64) -Train Accuracy 0.94578314
+epoch  655 -cost  0.19946873 -mse Tensor("Mean\_1312:0", shape=(), dtype=float64) -Train Accuracy 0.89759034
+epoch  656 -cost  0.59677505 -mse Tensor("Mean\_1314:0", shape=(), dtype=float64) -Train Accuracy 0.7409639
+epoch  657 -cost  1.6002231 -mse Tensor("Mean\_1316:0", shape=(), dtype=float64) -Train Accuracy 0.5481928
+epoch  658 -cost  0.88235015 -mse Tensor("Mean\_1318:0", shape=(), dtype=float64) -Train Accuracy 0.38554215
+epoch  659 -cost  0.45300418 -mse Tensor("Mean\_1320:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  660 -cost  0.3848353 -mse Tensor("Mean\_1322:0", shape=(), dtype=float64) -Train Accuracy 0.76506025
+epoch  661 -cost  0.33281672 -mse Tensor("Mean\_1324:0", shape=(), dtype=float64) -Train Accuracy 0.79518074
+epoch  662 -cost  0.2938689 -mse Tensor("Mean\_1326:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  663 -cost  0.25440806 -mse Tensor("Mean\_1328:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  664 -cost  0.21993124 -mse Tensor("Mean\_1330:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  665 -cost  0.1913609 -mse Tensor("Mean\_1332:0", shape=(), dtype=float64) -Train Accuracy 0.90361446
+epoch  666 -cost  0.18318893 -mse Tensor("Mean\_1334:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  667 -cost  0.21848756 -mse Tensor("Mean\_1336:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  668 -cost  0.45413414 -mse Tensor("Mean\_1338:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  669 -cost  1.0162972 -mse Tensor("Mean\_1340:0", shape=(), dtype=float64) -Train Accuracy 0.60240966
+epoch  670 -cost  0.35787955 -mse Tensor("Mean\_1342:0", shape=(), dtype=float64) -Train Accuracy 0.8674699
+epoch  671 -cost  0.29285753 -mse Tensor("Mean\_1344:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  672 -cost  0.23961954 -mse Tensor("Mean\_1346:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  673 -cost  0.19406416 -mse Tensor("Mean\_1348:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  674 -cost  0.16862668 -mse Tensor("Mean\_1350:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  675 -cost  0.15192486 -mse Tensor("Mean\_1352:0", shape=(), dtype=float64) -Train Accuracy 0.94578314
+epoch  676 -cost  0.14397688 -mse Tensor("Mean\_1354:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  677 -cost  0.1427297 -mse Tensor("Mean\_1356:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  678 -cost  0.14931548 -mse Tensor("Mean\_1358:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  679 -cost  0.18135756 -mse Tensor("Mean\_1360:0", shape=(), dtype=float64) -Train Accuracy 0.9096386
+epoch  680 -cost  0.34500605 -mse Tensor("Mean\_1362:0", shape=(), dtype=float64) -Train Accuracy 0.8192771
+epoch  681 -cost  0.37828454 -mse Tensor("Mean\_1364:0", shape=(), dtype=float64) -Train Accuracy 0.813253
+epoch  682 -cost  0.6679967 -mse Tensor("Mean\_1366:0", shape=(), dtype=float64) -Train Accuracy 0.686747
+epoch  683 -cost  0.26450017 -mse Tensor("Mean\_1368:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  684 -cost  0.21026725 -mse Tensor("Mean\_1370:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  685 -cost  0.17350794 -mse Tensor("Mean\_1372:0", shape=(), dtype=float64) -Train Accuracy 0.94578314
+epoch  686 -cost  0.14931737 -mse Tensor("Mean\_1374:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  687 -cost  0.1410786 -mse Tensor("Mean\_1376:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  688 -cost  0.1423794 -mse Tensor("Mean\_1378:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  689 -cost  0.15943411 -mse Tensor("Mean\_1380:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  690 -cost  0.27107406 -mse Tensor("Mean\_1382:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  691 -cost  0.61538327 -mse Tensor("Mean\_1384:0", shape=(), dtype=float64) -Train Accuracy 0.7590361
+epoch  692 -cost  0.22122726 -mse Tensor("Mean\_1386:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  693 -cost  0.18520018 -mse Tensor("Mean\_1388:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  694 -cost  0.15546729 -mse Tensor("Mean\_1390:0", shape=(), dtype=float64) -Train Accuracy 0.939759
+epoch  695 -cost  0.16831988 -mse Tensor("Mean\_1392:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  696 -cost  0.24042739 -mse Tensor("Mean\_1394:0", shape=(), dtype=float64) -Train Accuracy 0.8795181
+epoch  697 -cost  0.48130238 -mse Tensor("Mean\_1396:0", shape=(), dtype=float64) -Train Accuracy 0.7891566
+epoch  698 -cost  0.19338022 -mse Tensor("Mean\_1398:0", shape=(), dtype=float64) -Train Accuracy 0.96385545
+epoch  699 -cost  0.15125325 -mse Tensor("Mean\_1400:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  700 -cost  0.12502168 -mse Tensor("Mean\_1402:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  701 -cost  0.11486594 -mse Tensor("Mean\_1404:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  702 -cost  0.111739606 -mse Tensor("Mean\_1406:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  703 -cost  0.117981195 -mse Tensor("Mean\_1408:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  704 -cost  0.16487736 -mse Tensor("Mean\_1410:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  705 -cost  0.39269483 -mse Tensor("Mean\_1412:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  706 -cost  0.40077293 -mse Tensor("Mean\_1414:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  707 -cost  0.7061699 -mse Tensor("Mean\_1416:0", shape=(), dtype=float64) -Train Accuracy 0.6686747
+epoch  708 -cost  0.2763344 -mse Tensor("Mean\_1418:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  709 -cost  0.20358251 -mse Tensor("Mean\_1420:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  710 -cost  0.1529354 -mse Tensor("Mean\_1422:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  711 -cost  0.12469845 -mse Tensor("Mean\_1424:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  712 -cost  0.11123166 -mse Tensor("Mean\_1426:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  713 -cost  0.10428844 -mse Tensor("Mean\_1428:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  714 -cost  0.09954207 -mse Tensor("Mean\_1430:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  715 -cost  0.095765956 -mse Tensor("Mean\_1432:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  716 -cost  0.09418775 -mse Tensor("Mean\_1434:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  717 -cost  0.09897281 -mse Tensor("Mean\_1436:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  718 -cost  0.123685576 -mse Tensor("Mean\_1438:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  719 -cost  0.27411288 -mse Tensor("Mean\_1440:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  720 -cost  0.7663981 -mse Tensor("Mean\_1442:0", shape=(), dtype=float64) -Train Accuracy 0.7289157
+epoch  721 -cost  1.6848472 -mse Tensor("Mean\_1444:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  722 -cost  0.8699151 -mse Tensor("Mean\_1446:0", shape=(), dtype=float64) -Train Accuracy 0.40361446
+epoch  723 -cost  0.44978178 -mse Tensor("Mean\_1448:0", shape=(), dtype=float64) -Train Accuracy 0.74698794
+epoch  724 -cost  0.3857895 -mse Tensor("Mean\_1450:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  725 -cost  0.3435911 -mse Tensor("Mean\_1452:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  726 -cost  0.318848 -mse Tensor("Mean\_1454:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  727 -cost  0.29830107 -mse Tensor("Mean\_1456:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  728 -cost  0.2734602 -mse Tensor("Mean\_1458:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  729 -cost  0.24915217 -mse Tensor("Mean\_1460:0", shape=(), dtype=float64) -Train Accuracy 0.8614458
+epoch  730 -cost  0.22349115 -mse Tensor("Mean\_1462:0", shape=(), dtype=float64) -Train Accuracy 0.88554215
+epoch  731 -cost  0.19655576 -mse Tensor("Mean\_1464:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  732 -cost  0.16580856 -mse Tensor("Mean\_1466:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  733 -cost  0.15896578 -mse Tensor("Mean\_1468:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  734 -cost  0.16143462 -mse Tensor("Mean\_1470:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  735 -cost  0.24541126 -mse Tensor("Mean\_1472:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  736 -cost  0.4887792 -mse Tensor("Mean\_1474:0", shape=(), dtype=float64) -Train Accuracy 0.78313255
+epoch  737 -cost  0.30207738 -mse Tensor("Mean\_1476:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  738 -cost  0.3168399 -mse Tensor("Mean\_1478:0", shape=(), dtype=float64) -Train Accuracy 0.8012048
+epoch  739 -cost  0.1894918 -mse Tensor("Mean\_1480:0", shape=(), dtype=float64) -Train Accuracy 0.96385545
+epoch  740 -cost  0.14611684 -mse Tensor("Mean\_1482:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  741 -cost  0.12644795 -mse Tensor("Mean\_1484:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  742 -cost  0.11640158 -mse Tensor("Mean\_1486:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  743 -cost  0.11109433 -mse Tensor("Mean\_1488:0", shape=(), dtype=float64) -Train Accuracy 0.96385545
+epoch  744 -cost  0.11080634 -mse Tensor("Mean\_1490:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  745 -cost  0.1354354 -mse Tensor("Mean\_1492:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  746 -cost  0.26521465 -mse Tensor("Mean\_1494:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  747 -cost  0.7443069 -mse Tensor("Mean\_1496:0", shape=(), dtype=float64) -Train Accuracy 0.75301206
+epoch  748 -cost  0.29408753 -mse Tensor("Mean\_1498:0", shape=(), dtype=float64) -Train Accuracy 0.8313253
+epoch  749 -cost  0.2270772 -mse Tensor("Mean\_1500:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  750 -cost  0.162061 -mse Tensor("Mean\_1502:0", shape=(), dtype=float64) -Train Accuracy 0.9879518
+epoch  751 -cost  0.125947 -mse Tensor("Mean\_1504:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  752 -cost  0.11027855 -mse Tensor("Mean\_1506:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  753 -cost  0.10575597 -mse Tensor("Mean\_1508:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  754 -cost  0.10674546 -mse Tensor("Mean\_1510:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  755 -cost  0.12582193 -mse Tensor("Mean\_1512:0", shape=(), dtype=float64) -Train Accuracy 0.94578314
+epoch  756 -cost  0.24033047 -mse Tensor("Mean\_1514:0", shape=(), dtype=float64) -Train Accuracy 0.87349397
+epoch  757 -cost  0.8555998 -mse Tensor("Mean\_1516:0", shape=(), dtype=float64) -Train Accuracy 0.71686745
+epoch  758 -cost  1.7546554 -mse Tensor("Mean\_1518:0", shape=(), dtype=float64) -Train Accuracy 0.55421686
+epoch  759 -cost  0.5600571 -mse Tensor("Mean\_1520:0", shape=(), dtype=float64) -Train Accuracy 0.7710843
+epoch  760 -cost  0.44205925 -mse Tensor("Mean\_1522:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  761 -cost  0.35072204 -mse Tensor("Mean\_1524:0", shape=(), dtype=float64) -Train Accuracy 0.92168677
+epoch  762 -cost  0.2899371 -mse Tensor("Mean\_1526:0", shape=(), dtype=float64) -Train Accuracy 0.8915663
+epoch  763 -cost  0.24014066 -mse Tensor("Mean\_1528:0", shape=(), dtype=float64) -Train Accuracy 0.92771083
+epoch  764 -cost  0.19627105 -mse Tensor("Mean\_1530:0", shape=(), dtype=float64) -Train Accuracy 0.94578314
+epoch  765 -cost  0.16589272 -mse Tensor("Mean\_1532:0", shape=(), dtype=float64) -Train Accuracy 0.9518072
+epoch  766 -cost  0.1482356 -mse Tensor("Mean\_1534:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  767 -cost  0.13384072 -mse Tensor("Mean\_1536:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  768 -cost  0.11730012 -mse Tensor("Mean\_1538:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  769 -cost  0.106542245 -mse Tensor("Mean\_1540:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  770 -cost  0.10033349 -mse Tensor("Mean\_1542:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  771 -cost  0.110561796 -mse Tensor("Mean\_1544:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  772 -cost  0.14192644 -mse Tensor("Mean\_1546:0", shape=(), dtype=float64) -Train Accuracy 0.93373495
+epoch  773 -cost  0.3862921 -mse Tensor("Mean\_1548:0", shape=(), dtype=float64) -Train Accuracy 0.8373494
+epoch  774 -cost  1.1578327 -mse Tensor("Mean\_1550:0", shape=(), dtype=float64) -Train Accuracy 0.6566265
+epoch  775 -cost  0.36151707 -mse Tensor("Mean\_1552:0", shape=(), dtype=float64) -Train Accuracy 0.77710843
+epoch  776 -cost  0.22877228 -mse Tensor("Mean\_1554:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  777 -cost  0.16071637 -mse Tensor("Mean\_1556:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  778 -cost  0.13016321 -mse Tensor("Mean\_1558:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  779 -cost  0.11123498 -mse Tensor("Mean\_1560:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  780 -cost  0.1000487 -mse Tensor("Mean\_1562:0", shape=(), dtype=float64) -Train Accuracy 0.9698795
+epoch  781 -cost  0.09148322 -mse Tensor("Mean\_1564:0", shape=(), dtype=float64) -Train Accuracy 0.9819277
+epoch  782 -cost  0.08669462 -mse Tensor("Mean\_1566:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  783 -cost  0.09032927 -mse Tensor("Mean\_1568:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  784 -cost  0.112081565 -mse Tensor("Mean\_1570:0", shape=(), dtype=float64) -Train Accuracy 0.9578313
+epoch  785 -cost  0.19552302 -mse Tensor("Mean\_1572:0", shape=(), dtype=float64) -Train Accuracy 0.91566265
+epoch  786 -cost  0.48527297 -mse Tensor("Mean\_1574:0", shape=(), dtype=float64) -Train Accuracy 0.8072289
+epoch  787 -cost  0.30538976 -mse Tensor("Mean\_1576:0", shape=(), dtype=float64) -Train Accuracy 0.85542166
+epoch  788 -cost  0.327544 -mse Tensor("Mean\_1578:0", shape=(), dtype=float64) -Train Accuracy 0.82530123
+epoch  789 -cost  0.17132507 -mse Tensor("Mean\_1580:0", shape=(), dtype=float64) -Train Accuracy 0.97590363
+epoch  790 -cost  0.11552783 -mse Tensor("Mean\_1582:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  791 -cost  0.09386651 -mse Tensor("Mean\_1584:0", shape=(), dtype=float64) -Train Accuracy 0.9879518
+epoch  792 -cost  0.083893806 -mse Tensor("Mean\_1586:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  793 -cost  0.07615329 -mse Tensor("Mean\_1588:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  794 -cost  0.07112557 -mse Tensor("Mean\_1590:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  795 -cost  0.06707993 -mse Tensor("Mean\_1592:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  796 -cost  0.064437576 -mse Tensor("Mean\_1594:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  797 -cost  0.06343236 -mse Tensor("Mean\_1596:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  798 -cost  0.064321354 -mse Tensor("Mean\_1598:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+epoch  799 -cost  0.06557694 -mse Tensor("Mean\_1600:0", shape=(), dtype=float64) -Train Accuracy 0.9939759
+Model Saved in file: C:\textbackslash{}Users\textbackslash{}hmnsh\textbackslash{}repos\textbackslash{}edureka\textbackslash{}sonar
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} plot mse and accuracy graph}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{mse\PYZus{}history}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{accuracy\PYZus{}history}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} print the final accuracy}
+         
+         \PY{n}{correct\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{equal}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y\PYZus{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{accuracy} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{cast}\PY{p}{(}\PY{n}{correct\PYZus{}prediction}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Accuracy: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{accuracy}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}x}\PY{p}{,} \PY{n}{y\PYZus{}}\PY{p}{:} \PY{n}{test\PYZus{}y}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Test Accuracy:  0.8333333
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Print the final mse}
+         
+         \PY{n}{pred\PYZus{}y} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}x}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{mse} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{pred\PYZus{}y} \PY{o}{\PYZhy{}} \PY{n}{test\PYZus{}y}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSE: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{mse}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+MSE: 11.6002
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Restore model and make predict}
+         
+         \PY{n}{saver}\PY{o}{.}\PY{n}{restore}\PY{p}{(}\PY{n}{sess}\PY{p}{,} \PY{n}{model\PYZus{}path}\PY{p}{)}
+         \PY{n}{prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{correct\PYZus{}prediction} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{equal}\PY{p}{(}\PY{n}{prediction}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{y\PYZus{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{accuracy} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reduce\PYZus{}mean}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{cast}\PY{p}{(}\PY{n}{correct\PYZus{}prediction}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{93}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)}\PY{p}{:}
+             \PY{n}{prediction\PYZus{}run} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{prediction}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{X}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{)}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{accuracy\PYZus{}run} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{accuracy}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{X}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}}\PY{p}{:} \PY{n}{test\PYZus{}y}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Original: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{predicted: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{prediction\PYZus{}run}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{accuracy\PYZus{}run} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO:tensorflow:Restoring parameters from C:\textbackslash{}Users\textbackslash{}hmnsh\textbackslash{}repos\textbackslash{}edureka\textbackslash{}sonar
+Original:  R predicted:  [1] Accuracy:  0.52380955
+Original:  R predicted:  [0] Accuracy:  0.47619048
+Original:  R predicted:  [0] Accuracy:  0.47619048
+Original:  R predicted:  [1] Accuracy:  0.52380955
+Original:  M predicted:  [0] Accuracy:  0.47619048
+Original:  M predicted:  [1] Accuracy:  0.52380955
+Original:  M predicted:  [0] Accuracy:  0.47619048
+Original:  M predicted:  [0] Accuracy:  0.47619048
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

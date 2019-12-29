@@ -1,0 +1,9 @@
+c = get_config()
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port = 3389
+
+
+http://34.83.119.53:3389
+
+jupyter-notebook --no-browser --port=3389

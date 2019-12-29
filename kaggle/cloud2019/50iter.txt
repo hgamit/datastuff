@@ -1,0 +1,197 @@
+K-FOld- 
+
+https://www.kaggle.com/c/ultrasound-nerve-segmentation/discussion/22187#latest-126875
+empty submission 0.51 means that in the LB subset(20%) about 51% samples are empty.
+
+
+[11/18 19:00:52 d2.evaluation.evaluator]: Total inference time: 0:29:49 (1.132278 s / img per device, on 1 devices)
+[11/18 19:00:52 d2.evaluation.evaluator]: Total inference pure compute time: 0:14:12 (0.539308 s / img per device, on 1 devices)
+[11/18 19:00:55 d2.evaluation.coco_evaluation]: Preparing results for COCO format ...
+[11/18 19:00:55 d2.evaluation.coco_evaluation]: Saving results to ./output/coco_instances_results.json
+[11/18 19:00:57 d2.evaluation.coco_evaluation]: Evaluating predictions ...
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=3.89s).
+Accumulating evaluation results...
+DONE (t=1.06s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.006
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.026
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.001
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.006
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.050
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.223
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.267
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.267
+[11/18 19:01:02 d2.evaluation.coco_evaluation]: Evaluation results for bbox: 
+|  AP   |  AP50  |  AP75  |   APs    |   APm    |  APl  |
+|:-----:|:------:|:------:|:--------:|:--------:|:-----:|
+| 0.601 | 2.639  | 0.052  | -100.000 | -100.000 | 0.601 |
+[11/18 19:01:02 d2.evaluation.coco_evaluation]: Per-category bbox AP: 
+| category   | AP    | category   | AP    | category   | AP    |
+|:-----------|:------|:-----------|:------|:-----------|:------|
+| Sugar      | 0.550 | Fish       | 0.394 | Gravel     | 0.643 |
+| Flower     | 0.818 |            |       |            |       |
+Loading and preparing results...
+DONE (t=5.41s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.79s).
+Accumulating evaluation results...
+DONE (t=1.02s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.004
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.020
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.004
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.043
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.158
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.193
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.193
+[11/18 19:01:28 d2.evaluation.coco_evaluation]: Evaluation results for segm: 
+|  AP   |  AP50  |  AP75  |   APs    |   APm    |  APl  |
+|:-----:|:------:|:------:|:--------:|:--------:|:-----:|
+| 0.417 | 2.013  | 0.025  | -100.000 | -100.000 | 0.417 |
+[11/18 19:01:28 d2.evaluation.coco_evaluation]: Per-category segm AP: 
+| category   | AP    | category   | AP    | category   | AP    |
+|:-----------|:------|:-----------|:------|:-----------|:------|
+| Sugar      | 0.214 | Fish       | 0.243 | Gravel     | 0.470 |
+| Flower     | 0.741 |            |       |            |       |
+[11/18 19:01:28 d2.engine.defaults]: Evaluation results for clouds_test in csv format:
+[11/18 19:01:28 d2.evaluation.testing]: copypaste: Task: bbox
+[11/18 19:01:28 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[11/18 19:01:28 d2.evaluation.testing]: copypaste: 0.6013,2.6387,0.0516,-100.0000,-100.0000,0.6013
+[11/18 19:01:28 d2.evaluation.testing]: copypaste: Task: segm
+[11/18 19:01:28 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[11/18 19:01:28 d2.evaluation.testing]: copypaste: 0.4168,2.0131,0.0249,-100.0000,-100.0000,0.4168
+OrderedDict([('bbox',
+              {'AP': 0.6013401425733683,
+               'AP-Fish': 0.39397985950722864,
+               'AP-Flower': 0.8181356010908352,
+               'AP-Gravel': 0.6434953790093383,
+               'AP-Sugar': 0.5497497306860711,
+               'AP50': 2.6387244045766223,
+               'AP75': 0.05160155005099306,
+               'APl': 0.6013401425733683,
+               'APm': -100.0,
+               'APs': -100.0}),
+             ('segm',
+              {'AP': 0.41683010860223413,
+               'AP-Fish': 0.24300104167843053,
+               'AP-Flower': 0.740550918388671,
+               'AP-Gravel': 0.4700096720383626,
+               'AP-Sugar': 0.21375880230347236,
+               'AP50': 2.0131469075467088,
+               'AP75': 0.02492752560537252,
+               'APl': 0.41683010860223413,
+               'APm': -100.0,
+               'APs': -100.0})])
+			   
+1000 iterations
+
+[11/19 00:44:54 d2.evaluation.evaluator]: Total inference time: 0:29:29 (0.862086 s / img per device, on 1 devices)
+[11/19 00:44:54 d2.evaluation.evaluator]: Total inference pure compute time: 0:16:25 (0.480454 s / img per device, on 1 devices)
+[11/19 00:44:56 d2.evaluation.coco_evaluation]: Preparing results for COCO format ...
+[11/19 00:44:56 d2.evaluation.coco_evaluation]: Saving results to ./output/coco_instances_results.json
+[11/19 00:44:58 d2.evaluation.coco_evaluation]: Evaluating predictions ...
+Loading and preparing results...
+DONE (t=0.09s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=8.59s).
+Accumulating evaluation results...
+DONE (t=1.29s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.044
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.139
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.015
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.044
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.157
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.365
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.375
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.375
+[11/19 00:45:08 d2.evaluation.coco_evaluation]: Evaluation results for bbox: 
+|  AP   |  AP50  |  AP75  |   APs    |   APm    |  APl  |
+|:-----:|:------:|:------:|:--------:|:--------:|:-----:|
+| 4.433 | 13.851 | 1.465  | -100.000 | -100.000 | 4.433 |
+[11/19 00:45:08 d2.evaluation.coco_evaluation]: Per-category bbox AP: 
+| category   | AP    | category   | AP    | category   | AP    |
+|:-----------|:------|:-----------|:------|:-----------|:------|
+| Fish       | 2.923 | Flower     | 6.617 | Gravel     | 3.629 |
+| Sugar      | 4.562 |            |       |            |       |
+Loading and preparing results...
+DONE (t=4.86s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.47s).
+Accumulating evaluation results...
+DONE (t=1.30s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.040
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.134
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.011
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.040
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.152
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.303
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.309
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.309
+[11/19 00:45:35 d2.evaluation.coco_evaluation]: Evaluation results for segm: 
+|  AP   |  AP50  |  AP75  |   APs    |   APm    |  APl  |
+|:-----:|:------:|:------:|:--------:|:--------:|:-----:|
+| 4.042 | 13.448 | 1.131  | -100.000 | -100.000 | 4.042 |
+[11/19 00:45:35 d2.evaluation.coco_evaluation]: Per-category segm AP: 
+| category   | AP    | category   | AP    | category   | AP    |
+|:-----------|:------|:-----------|:------|:-----------|:------|
+| Fish       | 2.313 | Flower     | 6.043 | Gravel     | 3.287 |
+| Sugar      | 4.525 |            |       |            |       |
+[11/19 00:45:35 d2.engine.defaults]: Evaluation results for clouds_test in csv format:
+[11/19 00:45:35 d2.evaluation.testing]: copypaste: Task: bbox
+[11/19 00:45:35 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[11/19 00:45:35 d2.evaluation.testing]: copypaste: 4.4327,13.8514,1.4645,-100.0000,-100.0000,4.4327
+[11/19 00:45:35 d2.evaluation.testing]: copypaste: Task: segm
+[11/19 00:45:35 d2.evaluation.testing]: copypaste: AP,AP50,AP75,APs,APm,APl
+[11/19 00:45:35 d2.evaluation.testing]: copypaste: 4.0423,13.4482,1.1311,-100.0000,-100.0000,4.0423
+OrderedDict([('bbox',
+              {'AP': 4.432685147505857,
+               'AP-Fish': 2.9234473051964005,
+               'AP-Flower': 6.616608778471223,
+               'AP-Gravel': 3.628788537733442,
+               'AP-Sugar': 4.561895968622366,
+               'AP50': 13.851379676217976,
+               'AP75': 1.4645389000073754,
+               'APl': 4.432685147505857,
+               'APm': -100.0,
+               'APs': -100.0}),
+             ('segm',
+              {'AP': 4.0422762277452,
+               'AP-Fish': 2.3132996186369965,
+               'AP-Flower': 6.043143138341658,
+               'AP-Gravel': 3.287337892065423,
+               'AP-Sugar': 4.525324261936723,
+               'AP50': 13.448151766051744,
+               'AP75': 1.1311102631957821,
+               'APl': 4.042277568681248,
+               'APm': -100.0,
+               'APs': -100.0})])

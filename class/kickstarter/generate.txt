@@ -1,0 +1,13 @@
+jupyter nbconvert C:\Users\hmnsh\repos\datastuff\class\kickstarter\KickstartInitialPresentation.ipynb --to slides --post serve
+
+
+jupyter nbconvert --to slides C:\Users\hmnsh\repos\presentations\index.ipynb  --SlidesExporter.reveal_scroll=True
+
+jupyter nbconvert --to slides C:\Users\hmnsh\repos\presentations\KickstarterPresentation.ipynb  --SlidesExporter.reveal_scroll=True
+
+jupyter nbconvert --to slides C:\Users\hmnsh\repos\presentations\edCampaign.ipynb  --SlidesExporter.reveal_scroll=True
+
+KickstarterPresentation
+--TemplateExporter.exclude_input=True --SlidesExporter.reveal_transition=none
+
+SlidesExporter.reveal_scrollBool

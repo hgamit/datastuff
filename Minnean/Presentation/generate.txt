@@ -1,0 +1,31 @@
+jupyter nbconvert C:\Users\hmnsh\repos\datastuff\Minnean\Presentation\5DaysPredictions.ipynb --to slides --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True --SlidesExporter.reveal_transition=none --TemplateExporter.exclude_input=True
+
+
+jupyter nbconvert --to slides C:\Users\hmnsh\repos\datastuff\Minnean\Presentation\5DaysPredictions.ipynb  --SlidesExporter.reveal_scroll=True
+
+jupyter nbconvert --to slides C:\Users\hmnsh\repos\datastuff\Minnean\Presentation\5DaysPredictions.ipynb --reveal-prefix=reveal.js
+
+
+jupyter nbconvert C:\Users\hmnsh\repos\datastuff\Minnean\Presentation\5DaysPredictions.ipynb --to slides --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_transition=none --TemplateExporter.exclude_input=True
+
+
+
+'Fish', 'Flower', 'Sugar', 'Gravel'
+
+
+et_score(fmap='', importance_type='weight') 
+
+Get feature importance of each feature.
+Importance type can be defined as:
+
+* 'weight': the number of times a feature is used to split the data across all trees.
+* 'gain': the average gain across all splits the feature is used in.
+* 'cover': the average coverage across all splits the feature is used in.
+* 'total_gain': the total gain across all splits the feature is used in.
+* 'total_cover': the total coverage across all splits the feature is used in.
+
+.. note:: Feature importance is defined only for tree boosters
+
+Feature importance is only defined when the decision tree model is chosen as base
+learner (`booster=gbtree`). It is not defined for other base learner types, such
+as linear learners (`booster=gblinear`).

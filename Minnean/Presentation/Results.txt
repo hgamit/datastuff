@@ -1,0 +1,101 @@
+POLYGON ((485.5849053207169 224.6069171246367, 490.8214701864543 235.0800468503967, 468.8278977594572 234.5563903673327, 467.7805847855297 223.0359476650447, 485.5849053207169 224.6069171246367))"
+
+
+Test Set - 92 
+
+LSTM
+Day Prediction (Step):  1
+sqrt mean_squared_error:  8.140090139298975
+mean_squared_error:  66.2610674759124
+mean_absolute_error:  6.350321706136064
+R Squared: [0.88022275] 
+Adjusted R Squared: [0.87894852]
+
+XGBoost
+Day Prediction (Step):  1
+sqrt mean_squared_error:  9.09931774350424
+mean_squared_error:  82.79758339725112
+mean_absolute_error:  7.07198842366536
+R Squared: [0.85033041] 
+Adjusted R Squared: [0.84201543]
+
+ZSH, ZSK, ZSN [[908.56323]] [[915.5914]] [[923.18335]]
+ZSH, ZSK, ZSN [[904.6829]] [[911.71106]] [[919.30304]]
+
+LSTM
+Day Prediction (Step):  2
+sqrt mean_squared_error:  11.3049127015741
+mean_squared_error:  127.8010511902114
+mean_absolute_error:  9.143495451274667
+R Squared: [0.77085869] 
+Adjusted R Squared: [0.7683948]
+
+XGBoost
+Day Prediction (Step):  2
+sqrt mean_squared_error:  12.579820375926955
+mean_squared_error:  158.251880690587
+mean_absolute_error:  9.815788702713812
+R Squared: [0.71626177] 
+Adjusted R Squared: [0.70032142]
+
+ZSH, ZSK, ZSN [[907.9325]] [[914.96063]] [[922.5526]]
+ZSH, ZSK, ZSN [[903.752]] [[910.78015]] [[918.37213]]
+
+LSTM
+Day Prediction (Step):  3
+sqrt mean_squared_error:  13.516055760527678
+mean_squared_error:  182.68376332169345
+mean_absolute_error:  11.009020346783574
+R Squared: [0.67577274] 
+Adjusted R Squared: [0.67224853]
+
+XGBoost
+Day Prediction (Step):  3
+sqrt mean_squared_error:  15.156912812096046
+mean_squared_error:  229.73200599348124
+mean_absolute_error:  12.062235730759644
+R Squared: [0.59227149] 
+Adjusted R Squared: [0.56910509]
+
+ZSH, ZSK, ZSN [[904.5876]] [[911.6157]] [[919.2077]]
+ZSH, ZSK, ZSN [[894.17053]] [[901.19867]] [[908.79065]]
+
+LSTM
+Day Prediction (Step):  4
+sqrt mean_squared_error:  15.547060083907231
+mean_squared_error:  241.71107725262152
+mean_absolute_error:  13.04889834824429
+R Squared: [0.57529137] 
+Adjusted R Squared: [0.57062425]
+
+XGBoost
+Day Prediction (Step):  4
+sqrt mean_squared_error:  17.13643370335321
+mean_squared_error:  293.6573600694198
+mean_absolute_error:  14.238816127982188
+R Squared: [0.48401697] 
+Adjusted R Squared: [0.45436277]
+
+ZSH, ZSK, ZSN [[915.4456]] [[922.47375]] [[930.06573]]
+ZSH, ZSK, ZSN [[921.67206]] [[928.7002]] [[936.2922]]
+ZSH, ZSK, ZSN [[920.3758]] [[927.40393]] [[934.9959]]
+
+LSTM
+Day Prediction (Step):  5
+sqrt mean_squared_error:  17.299917301092556
+mean_squared_error:  299.2871386246415
+mean_absolute_error:  14.378490945567263
+R Squared: [0.47888574] 
+Adjusted R Squared: [0.47309558]
+
+XGBoost
+Day Prediction (Step):  5
+sqrt mean_squared_error:  19.904472034799543
+mean_squared_error:  396.188006984117
+mean_absolute_error:  16.246493264903197
+R Squared: [0.31016341] 
+Adjusted R Squared: [0.27005663]  
+
+ZSH, ZSK, ZSN [[902.2836]] [[909.31177]] [[916.90375]] 
+[[898.15906]] [[905.1872]] [[912.7792]]
+ZSH, ZSK, ZSN [[897.0964]] [[904.1245]] [[911.7165]]

@@ -1,0 +1,10 @@
+Python
+
+Decorators - property, registry
+https://github.com/IDSIA/sacred/blob/master/docs/experiment.rst
+https://pypi.org/project/pretrainedmodels/
+https://docs.python.org/3/library/abc.html
+
+
+
+https://arxiv.org/pdf/1901.07518v2.pdf
