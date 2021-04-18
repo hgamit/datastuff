@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>My two lines with colour between them</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+   </head>
+    <body>
+        <canvas id="mychart" width="300" height="200"></canvas>
+        <script>
+            var ctx = document.getElementById('mychart').getContext('2d'); //get the context (canvas)
+
+            var config = {              //configure the chart
+                type: 'line',
+                data: {
+                    labels: ['2019-12-02',
+							 '2019-12-03',
+							 '2019-12-04',
+							 '2019-12-05',
+							 '2019-12-06',
+							 '2019-12-09',
+							 '2019-12-10',
+							 '2019-12-11',
+							 '2019-12-12',
+							 '2019-12-13',
+							 '2019-12-16',
+							 '2019-12-17',
+							 '2019-12-18',
+							 '2019-12-19',
+							 '2019-12-20'],
+                    datasets: [
+					{
+                        label: "Min",
+                        backgroundColor: 'rgba(255, 206, 86,  0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1.0)',
+                        fill: false,  //no fill here
+                        data: [884.2,
+							 894.68036,
+							 886.42413,
+							 894.70074,
+							 900.9229,
+							 908.56323,
+							 900.9325,
+							 896.5876,
+							 906.4456,
+							 892.2836,
+							 911.24133,
+							 895.9325,
+							 891.5876,
+							 901.4456,
+							 887.2836]
+                    },
+					
+					{
+                        label: "Real",
+                        backgroundColor: 'rgba(255, 206, 86,  0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1.0)',
+                        fill: '-1',  //no fill here
+                        data: [884.2,
+							 894.68036,
+							 886.42413,
+							 894.70074,
+							 900.9229,
+							 908.56323,
+							 907.9325,
+							 904.5876,
+							 915.4456,
+							 902.2836,
+							 922.24133,
+							 907.9325,
+							 904.5876,
+							 915.4456,
+							 902.2836]
+                    },
+                    {
+                        label: "Max",
+                        backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1.0)',
+                        fill: '-1', //fill until previous dataset
+                        data: [884.2,
+							 894.68036,
+							 886.42413,
+							 894.70074,
+							 900.9229,
+							 908.56323,
+							 914.9325,
+							 912.5876,
+							 924.4456,
+							 912.2836,
+							 933.24133,
+							 919.9325,
+							 917.5876,
+							 929.4456,
+							 917.2836]
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    spanGaps: false,
+                    elements: {
+                        line: {
+                            tension: 0.000001
+                        }
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }],
+				yAxes: [{
+                ticks: {
+                    //beginAtZero: true
+                }
+            }]
+                    }
+                }
+            };
+            var chart = new Chart(ctx, config);
+        </script>
+    </body>
+</html>
